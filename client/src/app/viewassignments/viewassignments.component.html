@@ -1,0 +1,19 @@
+<div class="assignmentCard shadow" *ngFor="let assignment of assignments">
+  <div>
+    <span class="title">{{ assignment.assignmentTitle }}</span>
+    <br />
+    <span>{{ assignment.courseName }}</span>
+    <br />
+    <span
+      [ngStyle]="changeDueDateStyle(dueDate(assignment.submissionDate))"
+      >{{ dueDate(assignment.submissionDate) }}</span
+    >
+  </div>
+  <Button class="btn btn-primary" (click)="viewAssignment(assignment._id)"
+    >View Assignment</Button
+  >
+</div>
+
+<div class="assignmentCard shadow" *ngIf="assignments.length === 0">
+  There is no assignment due.
+</div>

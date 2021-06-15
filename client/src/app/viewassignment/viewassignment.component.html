@@ -1,0 +1,140 @@
+<div class="container maindiv">
+  <div class="row toprow">
+    <div class="col">
+      <h1>Assignment Details</h1>
+    </div>
+  </div>
+
+  <form>
+    <div class="row rows">
+      <div class="form-group col">
+        <label for="course" class="label">Course Name</label>
+        <input
+          type="test"
+          class="form-control"
+          id="course"
+          name="course"
+          disabled
+          [(ngModel)]="assignmentDetails.courseName"
+        />
+      </div>
+
+      <div class="form-group col">
+        <label for="teachername" class="label">Teacher Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="teachername"
+          name="teachername"
+          disabled
+          [(ngModel)]="assignmentDetails.teacherName"
+        />
+      </div>
+    </div>
+
+    <div class="row rows">
+      <div class="form-group col">
+        <label for="assignmenttitle" class="label">Assignment Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="assignmenttitle"
+          name="assignmenttitle"
+          disabled
+          [(ngModel)]="assignmentDetails.assignmentTitle"
+        />
+      </div>
+
+      <div class="form-group col">
+        <label for="marks" class="label">Assignment Marks</label>
+        <input
+          type="number"
+          class="form-control"
+          id="marks"
+          name="marks"
+          disabled
+          [(ngModel)]="assignmentDetails.assignmentMarks"
+        />
+      </div>
+    </div>
+
+    <div class="row rows">
+      <div class="form-group col">
+        <label for="instructions" class="label">Assignment Instructions</label>
+        <textarea
+          class="form-control"
+          id="instructions"
+          name="instructions"
+          rows="8"
+          disabled
+          [(ngModel)]="assignmentDetails.assignmentInstructions"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="row rows">
+      <div class="form-group col">
+        <label for="referenceMaterial" class="label">Reference Material</label>
+        <input
+          class="form-control"
+          id="referenceMaterial"
+          name="referenceMaterial"
+          disabled
+          [(ngModel)]="assignmentDetails.referenceMaterial"
+        />
+      </div>
+
+      <div class="form-group col">
+        <label for="submissiondate" class="label">Submission Date</label>
+        <input
+          type="text"
+          class="form-control"
+          id="submissiondate"
+          name="submissiondate"
+          disabled
+          [(ngModel)]="submissionDate"
+        />
+      </div>
+    </div>
+
+    <div class="row rows">
+      <div class="form-group col">
+        <label for="submissionMaterial" class="label">Your Work</label>
+        <input
+          type="text"
+          class="form-control"
+          id="submissionMaterial"
+          name="submissionMaterial"
+          placeholder="Paste Your Submission Link Here"
+          [(ngModel)]="submissionMaterial"
+        />
+      </div>
+    </div>
+
+    <div class="form-group row rows">
+      <div class="flash col-9">
+        <flash-messages></flash-messages>
+      </div>
+      <div class="offset-1 col-2">
+        <button
+          *ngIf="!pastDueDate"
+          type="submit"
+          class="btn btn-primary"
+          (click)="submitAssignment()"
+        >
+          Submit Assignment
+        </button>
+
+        <button
+          *ngIf="pastDueDate"
+          disabled
+          type="submit"
+          class="btn btn-primary"
+          (click)="submitAssignment()"
+        >
+          Submit Assignment
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

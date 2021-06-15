@@ -10,20 +10,24 @@ import { ConceptsComponent } from './concepts/concepts.component';
 import { AddclassComponent } from './addclass/addclass.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewclassesComponent } from './viewclasses/viewclasses.component';
 import { ViewteachersComponent } from './viewteachers/viewteachers.component';
 import { AddteacherComponent } from './addteacher/addteacher.component';
-import {DataService} from './data.service';
-import {AuthService} from './auth.service';
+import { DataService } from './data.service';
+import { AuthService } from './auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewstudentsComponent } from './viewstudents/viewstudents.component';
 import { ListusersComponent } from './listusers/listusers.component';
 import { AddstudentComponent } from './addstudent/addstudent.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LoginComponent } from './login/login.component';  // replaces previous Http service
-import {FlashMessagesModule} from 'angular2-flash-messages';
+import { LoginComponent } from './login/login.component'; // replaces previous Http service
+import { FlashMessagesModule } from 'angular2-flash-messages';
 import { RouterModule } from '@angular/router';
+
+import { AddassignmentComponent } from './addassignment/addassignment.component';
+import { ViewassignmentsComponent } from './viewassignments/viewassignments.component';
+import { ViewassignmentComponent } from './viewassignment/viewassignment.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +45,9 @@ import { RouterModule } from '@angular/router';
     AddstudentComponent,
     DashboardComponent,
     LoginComponent,
+    AddassignmentComponent,
+    ViewassignmentsComponent,
+    ViewassignmentComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,10 +56,11 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     NgbModule,
     BrowserAnimationsModule,
-    HttpClientModule,RouterModule,
-    FlashMessagesModule.forRoot()
+    HttpClientModule,
+    RouterModule,
+    FlashMessagesModule.forRoot(),
   ],
-  providers: [DataService,AuthService],
+  providers: [DataService, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

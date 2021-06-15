@@ -8,7 +8,7 @@ var teacherSchema = new Schema({
     designation: {
         type: String,
         required: true
-    }
+    },
 });
 
 module.exports = mongoose.model('Teacher', teacherSchema);

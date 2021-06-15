@@ -1,0 +1,25 @@
+.maindiv {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.toprow {
+  margin-bottom: 2%;
+}
+.rows {
+  margin-bottom: 2%;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btn {
+  margin-top: 10%;
+}
+
+.flash {
+  margin-top: 1%;
+  height: 50px;
+}

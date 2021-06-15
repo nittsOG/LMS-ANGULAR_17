@@ -1,0 +1,142 @@
+{{ submissionDate }}
+<div class="container maindiv">
+  <div class="row toprow">
+    <div class="col">
+      <h1>Add Assignment Details</h1>
+    </div>
+  </div>
+
+  <form>
+    <div class="form-group row rows">
+      <label for="class" class="col-3 label">Class Name</label>
+      <div class="col-9">
+        <input
+          type="text"
+          class="form-control"
+          id="class"
+          name="class"
+          placeholder="Enter Class Name"
+          [(ngModel)]="class"
+        />
+      </div>
+    </div>
+
+    <div class="form-group row rows">
+      <label for="course" class="col-3 label">Course Name</label>
+      <div class="col-9">
+        <input
+          type="test"
+          class="form-control"
+          id="course"
+          name="course"
+          placeholder="Enter Course Name"
+          [(ngModel)]="course"
+        />
+      </div>
+    </div>
+
+    <div class="form-group row rows">
+      <label for="assignmenttitle" class="col-3 label">Assignment Title</label>
+      <div class="col-9">
+        <input
+          type="text"
+          class="form-control"
+          id="assignmenttitle"
+          name="assignmenttitle"
+          placeholder="Enter Assignment Title"
+          [(ngModel)]="title"
+        />
+      </div>
+    </div>
+
+    <div class="form-group row rows">
+      <label for="marks" class="col-3 label">Assignment Marks</label>
+      <div class="col-9">
+        <input
+          type="number"
+          class="form-control"
+          id="marks"
+          name="marks"
+          placeholder="Enter Assignment Marks"
+          [(ngModel)]="marks"
+        />
+      </div>
+    </div>
+
+    <div class="form-group row rows">
+      <label for="instructions" class="col-3 label"
+        >Assignment Instructions</label
+      >
+      <div class="col-9">
+        <textarea
+          class="form-control"
+          id="instructions"
+          name="instructions"
+          rows="8"
+          placeholder="Enter Assignment Instructions"
+          [(ngModel)]="instructions"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="form-group row rows">
+      <label for="referenceMaterial" class="col-3 label"
+        >Reference Material</label
+      >
+      <div class="col-9">
+        <input
+          class="form-control"
+          id="referenceMaterial"
+          name="referenceMaterial"
+          placeholder="Enter Reference Material Link"
+          [(ngModel)]="referenceMaterial"
+        />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="submissiondate" class="col-3 label">Submission Date</label>
+      <div class="col-3">
+        <input
+          type="number"
+          class="form-control"
+          id="day"
+          name="day"
+          placeholder="Day (00)"
+          [(ngModel)]="day"
+        />
+      </div>
+      <div class="col-3">
+        <input
+          type="number"
+          class="form-control"
+          id="month"
+          name="month"
+          placeholder="Month (00)"
+          [(ngModel)]="month"
+        />
+      </div>
+      <div class="col-3">
+        <input
+          type="number"
+          class="form-control"
+          id="year"
+          name="year"
+          placeholder="Year (0000)"
+          [(ngModel)]="year"
+        />
+      </div>
+    </div>
+
+    <div class="form-group row rows">
+      <div class="flash col-9">
+        <flash-messages></flash-messages>
+      </div>
+      <div class="offset-1 col-2">
+        <button type="submit" class="btn btn-primary" (click)="addAssignment()">
+          Add Assignment
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

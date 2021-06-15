@@ -1,0 +1,16 @@
+.assignmentCard {
+  border: lightgrey 1px solid;
+  margin: 2% 2% 2% 2%;
+  padding: 6px 6px 6px 6px;
+  background-color: lightgrey;
+  border-radius: 9px;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.btn {
+  margin-left: 88%;
+  margin-top: -6%;
+}

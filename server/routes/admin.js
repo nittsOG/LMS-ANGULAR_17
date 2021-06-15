@@ -5,7 +5,6 @@ var Class = require('../models/class');
 var Teacher = require('../models/teacher');
 var Student = require('../models/student');
 var authenticate = require('../authenticate');
-const cors = require('./cors');
 
 
 /* GET Operations */
@@ -13,7 +12,7 @@ router.get('/', function(req, res, next) {
     res.send('respond with a Dashboard');
 
 });
-router.get('/classes',cors.cors, authenticate.verifyUser, function(req, res, next) {
+router.get('/classes', authenticate.verifyUser, function(req, res, next) {
     Class.find({}).populate('teacher').populate('students.sid').exec(function(error, results) {
         if (error) {
             return next(error);
@@ -22,7 +21,7 @@ router.get('/classes',cors.cors, authenticate.verifyUser, function(req, res, nex
         res.json(results);
     });
 });
-router.get('/students',cors.cors, authenticate.verifyUser, function(req, res, next) {
+router.get('/students', authenticate.verifyUser, function(req, res, next) {
     Student.find().sort('name').exec(function(error, results) {
         if (error) {
             return next(error);
@@ -31,7 +30,7 @@ router.get('/students',cors.cors, authenticate.verifyUser, function(req, res, ne
         res.json(results);
     });
 });
-router.get('/teachers',cors.cors, authenticate.verifyUser, function(req, res, next) {
+router.get('/teachers', authenticate.verifyUser, function(req, res, next) {
     Teacher.find().sort('name').exec(function(error, results) {
         if (error) {
             return next(error);
@@ -40,7 +39,7 @@ router.get('/teachers',cors.cors, authenticate.verifyUser, function(req, res, ne
         res.json(results);
     });
 });
-router.get('/classes/:id',cors.cors, authenticate.verifyUser, function(req, res, next) {
+router.get('/classes/:id', authenticate.verifyUser, function(req, res, next) {
     Class.find({ _id: req.params.id }).populate('teacher').populate('students.sid').exec(function(error, results) {
         if (error) {
             return next(error);
@@ -49,7 +48,7 @@ router.get('/classes/:id',cors.cors, authenticate.verifyUser, function(req, res,
         res.json(results);
     });
 });
-router.get('/students/:id',cors.cors, authenticate.verifyUser, function(req, res, next) {
+router.get('/students/:id', authenticate.verifyUser, function(req, res, next) {
     Student.findById(req.params.id)
         .then((student) => {
             res.statusCode = 200;
@@ -59,7 +58,7 @@ router.get('/students/:id',cors.cors, authenticate.verifyUser, function(req, res
         .catch((err) => next(err));
 
 });
-router.get('/teachers/:id',cors.cors, authenticate.verifyUser, function(req, res, next) {
+router.get('/teachers/:id', authenticate.verifyUser, function(req, res, next) {
     Teacher.findById(req.params.id)
         .then((teacher) => {
             res.statusCode = 200;
@@ -70,7 +69,7 @@ router.get('/teachers/:id',cors.cors, authenticate.verifyUser, function(req, res
 
 });
 //POST Operations
-router.post('/addteacher',cors.corsWithOptions, authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
+router.post('/addteacher', authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
     console.log(req.body.name);
     console.log(req.body.designation);
     Teacher.create(req.body)
@@ -82,7 +81,7 @@ router.post('/addteacher',cors.corsWithOptions, authenticate.verifyUser,authenti
         }, (err) => next(err))
         .catch((err) => next(err));
 });
-router.post('/addclass',cors.cors, authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
+router.post('/addclass', authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
     Class.create(req.body)
         .then((result) => {
             console.log('Class has been Added ', result);
@@ -92,7 +91,7 @@ router.post('/addclass',cors.cors, authenticate.verifyUser,authenticate.verifyAd
         }, (err) => next(err))
         .catch((err) => next(err));
 });
-router.post('/addstudent',cors.cors, authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
+router.post('/addstudent', authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
     Student.create(req.body)
         .then((student) => {
             console.log('Student has been Added ', student);
@@ -103,7 +102,7 @@ router.post('/addstudent',cors.cors, authenticate.verifyUser,authenticate.verify
         .catch((err) => next(err));
 });
 //PUT Operations
-router.put('/assign/:cid/Student/:sid',cors.cors, authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
+router.put('/assign/:cid/Student/:sid', authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
     Class.findOneAndUpdate({ _id: req.params.cid }, {
             "$push": {
                 "students": {
@@ -120,7 +119,7 @@ router.put('/assign/:cid/Student/:sid',cors.cors, authenticate.verifyUser,authen
         });
 });
 
-router.put('/class/:cid/teacher/:tid',cors.cors, authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
+router.put('/class/:cid/teacher/:tid', authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
     Class.findOneAndUpdate({ _id: req.params.cid }, { teacher: req.params.tid }, function(error, results) {
         if (error) {
             return next(error);
@@ -129,12 +128,12 @@ router.put('/class/:cid/teacher/:tid',cors.cors, authenticate.verifyUser,authent
         res.json(results);
     });
 });
-router.put('/class/:cid',cors.cors, authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
+router.put('/class/:cid', authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
     res.send('respond with a resource');
 });
 
 //Delete Operations
-router.delete('/delteacher/:id',cors.cors, authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
+router.delete('/delteacher/:id', authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
     Teacher.deleteOne({ _id: req.params.id }, function(error, results) {
         if (error) {
             return next(error);
@@ -143,7 +142,7 @@ router.delete('/delteacher/:id',cors.cors, authenticate.verifyUser,authenticate.
         res.json(results);
     });
 });
-router.delete('/delclass/:id',cors.cors, authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
+router.delete('/delclass/:id', authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
     Class.deleteOne({ _id: req.params.id }, function(error, results) {
         if (error) {
             return next(error);
@@ -152,7 +151,7 @@ router.delete('/delclass/:id',cors.cors, authenticate.verifyUser,authenticate.ve
         res.json(results);
     });
 });
-router.delete('/delstudent/:id',cors.cors, authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
+router.delete('/delstudent/:id', authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
     Student.deleteOne({ _id: req.params.id }, function(error, results) {
         if (error) {
             return next(error);
