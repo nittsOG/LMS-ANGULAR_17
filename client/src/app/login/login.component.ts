@@ -50,11 +50,11 @@ export class LoginComponent implements OnInit {
         console.log(this.data);
         this.flashMessage.show(
           'You are now logged in as ' + this.data.user.role,
-          { cssClass: 'alert-success', timeout: 3000 }
+          { cssClass: 'alert-success', timeout: 2000 }
         );
         setTimeout(() => {
           this.router.navigate(['']);
-        }, 3000);
+        }, 2000);
       } else {
         this.flashMessage.show(this.data.statusText, {
           cssClass: 'alert-danger',

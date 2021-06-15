@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
@@ -18,13 +18,22 @@ export class ViewassignmentComponent implements OnInit {
   public pastDueDate: boolean = false;
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     private dataService: DataService,
     private flashMessage: FlashMessagesService
   ) {}
 
   ngOnInit() {
     this.getAssignmentDetails();
+  }
+
+  //To reload component
+  reloadComponent() {
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
   }
 
   //To slice date
@@ -57,7 +66,7 @@ export class ViewassignmentComponent implements OnInit {
   getAssignmentDetails(): void {
     var student: any = JSON.parse(localStorage.getItem('user') || '{}');
     this.studentRollNumber = student.username;
-    this.assignmentid = this.route.snapshot.paramMap.get('id');
+    this.assignmentid = this.activatedRoute.snapshot.paramMap.get('id');
     this.dataService.getAssignmentDetails(this.assignmentid).subscribe(
       (data) => {
         var returnedData: any = data;
@@ -99,6 +108,9 @@ export class ViewassignmentComponent implements OnInit {
             cssClass: 'alert-success',
             timeout: 3000,
           });
+          setTimeout(() => {
+            this.reloadComponent();
+          }, 3000);
         },
         (err) => {
           this.flashMessage.show('Server error, please try again.', {

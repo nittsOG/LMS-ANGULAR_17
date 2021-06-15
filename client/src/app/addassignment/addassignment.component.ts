@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
@@ -24,6 +25,7 @@ export class AddassignmentComponent implements OnInit {
   public serverResponse: any = '';
 
   constructor(
+    private router: Router,
     private dataService: DataService,
     private flashMessage: FlashMessagesService
   ) {}
@@ -65,6 +67,14 @@ export class AddassignmentComponent implements OnInit {
     return true;
   }
 
+  //To reload component
+  reloadComponent() {
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
+  }
+
   //To add assignment
   addAssignment(): void {
     if (this.validate()) {
@@ -95,6 +105,9 @@ export class AddassignmentComponent implements OnInit {
             cssClass: 'alert-success',
             timeout: 3000,
           });
+          setTimeout(() => {
+            this.reloadComponent();
+          }, 3000);
         },
         (err) => {
           this.flashMessage.show('Server error, please try again.', {

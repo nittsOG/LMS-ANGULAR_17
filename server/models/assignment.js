@@ -34,6 +34,10 @@ var assignmentSchema = new Schema({
     type: Date,
     required: true,
   },
+  addedOn: {
+    type: Date,
+    default: new Date(),
+  },
   submittedAssignments: [
     {
       rollNumber: {
