@@ -9,7 +9,6 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./addassignment.component.css'],
 })
 export class AddassignmentComponent implements OnInit {
-  public date = new Date();
 
   public name: string = '';
   public class: string = '';
